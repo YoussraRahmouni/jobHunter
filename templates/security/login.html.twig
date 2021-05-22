@@ -197,7 +197,7 @@
 
                         <div id="cd-login" class="is-selected">
                             <div class="page-login-form">
-                                <form role="form" class="login-form" action="login-servlet" method="post">
+                                <form role="form" class="login-form" " method="post">
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <i class="ti-user"></i>
@@ -208,11 +208,19 @@
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <i class="ti-lock"></i>
-                                            <input type="password" name="password" class="form-control"
+                                            <input type="password" id="inputPassword" name="password" class="form-control"
                                                 placeholder="Password">
                                         </div>
                                     </div>
+
+                                    <input
+                                        type="hidden"
+                                        name="_csrf_token"
+                                        value="{{ csrf_token('authenticate') }}"
+                                    />
+
                                     <button class="btn btn-common log-btn">Connexion</button>
+                                    
                                     <div class="checkbox-item">
 
                                         <p class="cd-form-bottom-message"><a href="register.jsp">S'enregistrer</a></p>

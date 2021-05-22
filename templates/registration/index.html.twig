@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="Jobboard">
-    <title>Login | Job Hunter </title>
+    <title>Register | Job Hunter </title>
 
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
 
@@ -200,44 +200,41 @@
                         </ul>
                         <div id="cd-signup" class="is-selected">
                             <div class="page-login-form register">
+                            {{ form_start(form) }}
                                 <form role="form" class="login-form" action="register-servlet" method="post">
+
+                                {{ form_row(form._token) }}
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <i class="ti-user"></i>
-                                            <input type="text" id="sender-email" class="form-control" name="username"
-                                                placeholder="Full Name">
+                                            {# {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }} #}
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <i class="ti-email"></i>
-                                            <input type="email" id="sender-email" class="form-control" name="email"
-                                                placeholder="Email">
+                                            {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <div class="input-icon">
-
-                                            <select id="type" class="form-control">
-                                                <option value="entreprise" selected>Entreprise</option>
-                                                <option value="etudiant" >Etudiant</option>
-
-                                              </select>
+                                            {{ form_row(form.roles)}}
+                                            
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <i class="ti-lock"></i>
-                                            <input type="password" name="password" class="form-control"
-                                                placeholder="Mot de Passe">
+                                            {{ form_row(form.password.first, {'attr': {'class':'form-control'}}) }}
                                         </div>
                                     </div>
                                     
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <i class="ti-lock"></i>
-                                            <input type="password" name="mobile" class="form-control"
-                                                placeholder="Mot de Passe">
+                                            {{ form_row(form.password.second, {'attr': {'class':'form-control'}}) }}
                                         </div>
                                     </div>
                                     <button class="btn btn-common log-btn">Register</button>
@@ -247,27 +244,9 @@
                                         </p>
                                     </div>
                                 </form>
+                                {{ form_end(form) }}
                             </div>
                         </div>
-
-
-                        <!-- <div class="page-login-form" id="cd-reset-password">
-                            <p class="cd-form-message">Lost your password? Please enter your email address. You will
-                                receive a link to create a new password.</p>
-                            <form class="cd-form">
-                                <div class="form-group">
-                                    <div class="input-icon">
-                                        <i class="ti-email"></i>
-                                        <input type="text" id="sender-email" class="form-control" name="email"
-                                            placeholder="Email">
-                                    </div>
-                                </div>
-                                <p class="fieldset">
-                                    <button class="btn btn-common log-btn" type="submit">Reset password</button>
-                                </p>
-                            </form>
-                            <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
-                        </div> -->
                     </div>
                 </div>
             </div>
