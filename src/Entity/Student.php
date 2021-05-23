@@ -22,15 +22,9 @@ class Student
      */
     private $student_name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $student_email;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $student_password;
+
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,6 +41,11 @@ class Student
      */
     private $student_cv;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="student", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,30 +59,6 @@ class Student
     public function setStudentName(string $student_name): self
     {
         $this->student_name = $student_name;
-
-        return $this;
-    }
-
-    public function getStudentEmail(): ?string
-    {
-        return $this->student_email;
-    }
-
-    public function setStudentEmail(string $student_email): self
-    {
-        $this->student_email = $student_email;
-
-        return $this;
-    }
-
-    public function getStudentPassword(): ?string
-    {
-        return $this->student_password;
-    }
-
-    public function setStudentPassword(string $student_password): self
-    {
-        $this->student_password = $student_password;
 
         return $this;
     }
@@ -120,6 +95,28 @@ class Student
     public function setStudentCv(string $student_cv): self
     {
         $this->student_cv = $student_cv;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setStudent(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getStudent() !== $this) {
+            $user->setStudent($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

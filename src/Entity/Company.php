@@ -30,19 +30,14 @@ class Company
     private $company_website;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $company_email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $company_password;
-
-    /**
      * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="company", orphanRemoval=true)
      */
     private $offer;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="company", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -78,29 +73,6 @@ class Company
         return $this;
     }
 
-    public function getCompanyEmail(): ?string
-    {
-        return $this->company_email;
-    }
-
-    public function setCompanyEmail(string $company_email): self
-    {
-        $this->company_email = $company_email;
-
-        return $this;
-    }
-
-    public function getCompanyPassword(): ?string
-    {
-        return $this->company_password;
-    }
-
-    public function setCompanyPassword(string $company_password): self
-    {
-        $this->company_password = $company_password;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Offer[]
@@ -128,6 +100,28 @@ class Company
                 $offer->setCompany(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setCompany(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getCompany() !== $this) {
+            $user->setCompany($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }
