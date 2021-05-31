@@ -20,7 +20,7 @@ class AddInfoStType extends AbstractType
             ->add('student_domain', TextType::class)
             ->add('student_linkedin', TextType::class)
             ->add('student_cv', FileType::class)
-            ->add('user')
+            // ->add('user')
         ;
     }
 

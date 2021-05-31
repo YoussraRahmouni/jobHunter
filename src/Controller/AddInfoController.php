@@ -16,6 +16,8 @@ class AddInfoController extends AbstractController
      */
     public function index(Request $request): Response
     {
+
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
@@ -26,17 +28,33 @@ class AddInfoController extends AbstractController
         $student = new Student();
 
         $currentUser = $this->getUser();
-        $student->addUser($currentUser);
+        // dump($currentUser);
+
 
         $form = $this->createForm(AddInfoStType::class, $student);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            // Save
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($student);
-            $em->flush();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            if(!is_null($student)){
+
+                $currentUser = $this->getUser();
+                $student->setUser($currentUser);
+                
+                //save
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($student);
+                $em->flush();
+             
+ 
+            } else{
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($student);
+                $em->flush();
+                $student->setUser($currentUser);
+            }
             
             
             return $this->redirectToRoute('home_student');
