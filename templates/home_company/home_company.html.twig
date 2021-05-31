@@ -100,7 +100,7 @@
           <div class="row">
            
            <div style="padding: 100px; text-align:center;">
-              <h1>Tous les etudiants</h2><br>
+              <h2>Tous les etudiants</h2><br>
                 <h2>Liste De Tous les Etudiants</h2>
            </div>
 
@@ -122,9 +122,10 @@
             <div class="thumb">
 
             </div>
+            {% for student in students %}
             <div class="job-list-content">
-              <h4><a href="job-details.html">Nom Etudiant</a><span class="full-time">Domaine</span></h4>
-              <p>Description mission twillaaaa bzaf bzaf
+              <h4><a href="job-details.html">{{ student.studentName }}</a><span class="full-time">{{ student.studentDomain }}</span></h4>
+              <p>{{ student.id }}
                 lkjehfgmqshdfmlkqsdmlfhqsopfmkqjshdmkqhsmgkhqsdmkjhfmqkshjfmkqshdkgmhqsmkdjhfmkqshmkqshjdfgklsjhfgpoiuhzmsiuqhfd
               </p>
               <div class="job-tag">
@@ -137,10 +138,11 @@
                  
                   <a href="job-details.html" class="btn btn-common btn-rm">Voir CV</a>
 
-                  <a href="job-details.html" class="btn btn-common btn-rm">LinkedIn</a>
+                  <a href="{{ student.studentLinkedin }}" target="_blank" class="btn btn-common btn-rm">LinkedIn</a>
                 </div>
               </div>
             </div>
+            {% endfor %}
           </div>
 
 
