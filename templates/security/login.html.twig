@@ -72,7 +72,7 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right float-right">
-                            <li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> S'enregistrer </a>
+                            <li class="left"><a href="{{ path('registration') }}"><i class="ti-pencil-alt"></i> S'enregistrer </a>
                             </li>
                             <li class="right"><a href="my-account.html"><i class="ti-lock"></i> Connexion</a></li>
                         </ul>
@@ -130,7 +130,7 @@
                             <li><a href="single-post.html">Blog Single Post</a></li>
                         </ul>
                     </li>
-                    <li class="btn-m"><a href="post-job.html"><i class="ti-pencil-alt"></i> S'enregistrer</a></li>
+                    <li class="btn-m"><a href="{{ path('registration') }}"><i class="ti-pencil-alt"></i> S'enregistrer</a></li>
                     <li class="btn-m"><a class="active" href="my-account.html"><i class="ti-lock"></i> Connexion</a></li>
                 </ul>
 
@@ -197,11 +197,12 @@
 
                         <div id="cd-login" class="is-selected">
                             <div class="page-login-form">
-                                <form role="form" class="login-form" " method="post">
+                                <form role="form" class="login-form"  method="post">
+
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <i class="ti-user"></i>
-                                            <input type="email" id="sender-email" class="form-control" name="Email"
+                                            <input type="email" id="sender-email" class="form-control" name="email"
                                                 placeholder="email">
                                         </div>
                                     </div>
@@ -219,11 +220,11 @@
                                         value="{{ csrf_token('authenticate') }}"
                                     />
 
-                                    <button class="btn btn-common log-btn">Connexion</button>
+                                    <button type="submit" class="btn btn-common log-btn">Connexion</button>
                                     
                                     <div class="checkbox-item">
 
-                                        <p class="cd-form-bottom-message"><a href="register.jsp">S'enregistrer</a></p>
+                                        <p class="cd-form-bottom-message"><a href="{{ path('registration') }}">S'enregistrer</a></p>
                                     </div>
                                 </form>
                             </div>

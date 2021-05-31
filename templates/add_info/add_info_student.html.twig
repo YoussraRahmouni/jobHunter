@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="Jobboard">
-    <title>Login | Job Hunter </title>
+    <title>add info | Job Hunter </title>
 
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
 
@@ -33,11 +33,9 @@
 
 
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" type="text/css">
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" type="text/css">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/red.css') }}" media="screen" />
 
 {% endblock %}
 </head>
@@ -143,7 +141,7 @@
     </div>
 
 
-    <div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="page-header" style="background: url({{ asset('assets/img/banner1.jpg')}});">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -165,11 +163,31 @@
         <div class="row">
           <div class="col-sm-12 col-md-9 col-md-offset-2">
             <div class="page-ads box">
-              <form class="form-ad">
-                
+            {{ form_start(form) }}
+              <form class="form-ad" method="post">
+
+                {{ form_row(form._token) }}
+                <div class="form-group">
+                  <label class="control-label">Nom complet </label>
+                  {{ form_row(form.student_name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Domaine <span>(votre dmaine de specialité)</span></label>
+                  {{ form_row(form.student_domain, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
                 <div class="form-group">
                   <label class="control-label">LinkedIn <span>(lien)</span></label>
-                  <input type="text" class="form-control" placeholder="www.linkedin.com/....">
+                  {{ form_row(form.student_linkedin, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Votre CV</label>
+                  {{ form_row(form.student_cv, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Votre CV <span>({{user.email}})</span></label>
+                  {{ form_row(form.user, {'attr': {'value': user.email} }) }}
                 </div>
                 <!-- <div class="form-group">
                   <label class="control-label">Categorie</label>
@@ -189,7 +207,7 @@
                     </label>
                   </div>
                 </div> -->
-                <div class="form-group">
+                {# <div class="form-group">
                   <label class="control-label">Domain <span>(votre domaine)</span></label>
                   <select id="type" class="form-control">
                     <option value="entreprise" selected>Developpement Web</option>
@@ -198,10 +216,11 @@
                     <option value="etudiant" >Machine Learning</option>
 
                   </select>
-                </div>
+                </div> #}
 
-                <a href="#" class="btn btn-common">Ajouter</a>
+                <button class="btn btn-common log-btn">Ajouter</button>
               </form>
+              {{ form_end(form) }}
             </div>
           </div>
         </div>
@@ -275,20 +294,7 @@
     <a href="#" class="back-to-top">
       <i class="ti-arrow-up"></i>
     </a>
-    <div id="loading">
-      <div id="loading-center">
-        <div id="loading-center-absolute">
-          <div class="object" id="object_one"></div>
-          <div class="object" id="object_two"></div>
-          <div class="object" id="object_three"></div>
-          <div class="object" id="object_four"></div>
-          <div class="object" id="object_five"></div>
-          <div class="object" id="object_six"></div>
-          <div class="object" id="object_seven"></div>
-          <div class="object" id="object_eight"></div>
-        </div>
-      </div>
-    </div>
+   
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/jquery-min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/material.min.js') }}"></script>
@@ -297,29 +303,24 @@
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/jquery.parallax.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/jquery.slicknav.js') }}"></script>
+
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/waypoints.min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/jasny-bootstrap.min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/form-validator.min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/contact-form-script.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript"
         src="{{ asset('assets/js/jquery.themepunch.revolution.min.js') }}"></script>
+
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/jquery.themepunch.tools.min.js') }}"></script>
 
-    <script type="636ff2aba447c0da6a2c4843-text/javascript">
-      $(document).ready(function() {
-          $('#summernote').summernote({
-            height: 250,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: true                  // set focus to editable area after initializing summernote
-          });
-      });
-    </script>
-    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
-      data-cf-settings="636ff2aba447c0da6a2c4843-|49" defer=""></script>
+
+  
+    <script src="{{ asset('assets/js/rocket-loader.js') }}" data-cf-settings="636ff2aba447c0da6a2c4843-|49" defer=""></script>
+      
 </body>
 
 </html>

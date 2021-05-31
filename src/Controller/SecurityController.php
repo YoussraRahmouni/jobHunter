@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use PhpParser\Node\Stmt\Else_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
+        //     return $this->redirectToRoute('app_login');
         // }
 
         // get the login error if there is one
@@ -23,7 +24,16 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        if(TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_STUDENT'))
+        {
+            return $this->redirectToRoute('add_info');
+        }
+        else if(TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_COMPANY'))
+        {
+            return $this->redirectToRoute('add_info_company');
+        }
+
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error, 'user' => $this->getUser()]);
     }
 
     /**

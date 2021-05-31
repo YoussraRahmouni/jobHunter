@@ -120,4 +120,17 @@ class Student
 
         return $this;
     }
+    /**
+    * Add user
+     *
+     * @param \src\Entity\Users $user
+     *
+     * @return Student
+     */
+    public function addUser(?User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
 }
