@@ -143,7 +143,7 @@
     </div>
 
 
-    <div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="page-header" style="background: url({{ asset('assets/img/banner1.jpg')}});">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -165,38 +165,20 @@
         <div class="row">
           <div class="col-sm-12 col-md-9 col-md-offset-2">
             <div class="page-ads box">
-              <form class="form-ad">
-                
+              {{ form_start(form) }}
+              <form class="form-ad" method="post">
+                {{ form_row(form._token) }}
                 <div class="form-group">
-                  <label class="control-label">Company Name</label>
-                  <input type="text" class="form-control" placeholder="Nom de votre Entreprise">
+                  <label class="control-label">Nom d'entreprise</label>
+                  {{ form_row(form.company_name, {'attr': {'class': 'form-control'}}) }}
                 </div>
-                <!-- <div class="form-group">
-                  <label class="control-label">Categorie</label>
-                  <div class="search-category-container">
-                    <label class="styled-select">
-                      <select class="dropdown-product selectpicker">
-                        <option>All Categories</option>
-                        <option>Finance</option>
-                        <option>IT & Engineering</option>
-                        <option>Education/Training</option>
-                        <option>Art/Design</option>
-                        <option>Sale/Markting</option>
-                        <option>Healthcare</option>
-                        <option>Science</option>
-                        <option>Food Services</option>
-                      </select>
-                    </label>
-                  </div>
-                </div> -->
                 <div class="form-group">
-                  <label class="control-label">Site Web <span>(optionnel)</span></label>
-                    <input type="text" class="form-control" placeholder="www.domaine...">
-
+                  <label class="control-label">Site Web</label>
+                  {{ form_row(form.company_website, {'attr': {'class': 'form-control'}}) }}
                 </div>
-
-                <a href="#" class="btn btn-common">Ajouter</a>
+                <button class="btn btn-common log-btn">Ajouter</button>
               </form>
+              {{ form_end(form) }}
             </div>
           </div>
         </div>
@@ -269,7 +251,7 @@
     <a href="#" class="back-to-top">
       <i class="ti-arrow-up"></i>
     </a>
-    <div id="loading">
+    <!--<div id="loading">
       <div id="loading-center">
         <div id="loading-center-absolute">
           <div class="object" id="object_one"></div>
@@ -282,7 +264,7 @@
           <div class="object" id="object_eight"></div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/jquery-min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

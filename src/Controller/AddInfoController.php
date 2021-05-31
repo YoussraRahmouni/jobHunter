@@ -22,7 +22,7 @@ class AddInfoController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        
+
 
 
         $student = new Student();
