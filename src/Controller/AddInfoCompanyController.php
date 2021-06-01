@@ -52,7 +52,7 @@ class AddInfoCompanyController extends AbstractController
             }
 
 
-            return $this->redirectToRoute('home_company');
+            return $this->redirectToRoute('offer_index');
         }
 
         return $this->render('add_info_company/add_info_company.html.twig', [
