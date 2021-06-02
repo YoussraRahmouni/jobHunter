@@ -20,6 +20,9 @@ class AddInfoCompanyController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
+        if($this->getUser()->getCompany()){
+            return $this->redirectToRoute('offer_index');
+        }
         $company = new Company();
 
         $currentUser = $this->getUser();

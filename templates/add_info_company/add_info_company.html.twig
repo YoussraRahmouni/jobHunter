@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="Jobboard">
-    <title>Login | Job Hunter </title>
+    <title>Ajouter Info | Job Hunter </title>
 
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
 
@@ -72,8 +72,14 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right float-right">
-              <li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> S'enregistrer</a></li>
-              <li class="right"><a href="login.html"><i class="ti-lock"></i> Connexion</a></li>
+              {% if app.user %}
+                  <li class="right"><a href="my-account.html"><i class="ti-lock"></i> Logout</a></li>
+              {% else %}
+                  
+                    <li class="left"><a href="{{ path('registration') }}"><i class="ti-pencil-alt"></i> S'enregistrer </a>
+                  </li>
+                  <li class="right"><a href="my-account.html"><i class="ti-lock"></i> Connexion</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>

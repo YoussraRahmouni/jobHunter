@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="Jobboard">
-    <title>Login | Job Hunter </title>
+    <title>Modifier Offre | Job Hunter </title>
 
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
 
@@ -60,11 +60,10 @@
           <div class="collapse navbar-collapse" id="navbar">
 
             <ul class="nav navbar-nav">
-              <li>
-                <a href="index.html">
-                  Accueil
-                </a>
-              </li>
+
+                <li><a href="{{ path('student_index') }}"><i ></i> Accueil</a></li>
+                <li><a href="#"><i class="ti-home"></i> Profile</a></li>
+
               <li>
 
               </li>
@@ -72,8 +71,15 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right float-right">
-              <li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i>S'enregistrer</a></li>
-              <li class="right"><a href="login.html"><i class="ti-lock"></i> Connexion</a></li>
+              {% if app.user %}
+                  <li class="right"><a href="{{ path('offer_new') }}"><i class="ti-lock"></i> ajouter offre</a></li>
+                  <li class="right"><a href="{{ path('app_logout') }}"><i class="ti-lock"></i> Logout</a></li>
+              {% else %}
+                  
+                  <li class="left"><a href="{{ path('registration') }}"><i class="ti-pencil-alt"></i> S'enregistrer </a>
+                  </li>
+                  <li class="right"><a href="my-account.html"><i class="ti-lock"></i> Connexion</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -143,14 +149,15 @@
     </div>
 
 
-    <div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="page-header" style="background: url({{ asset('assets/img/banner1.jpg')}});">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="breadcrumb-wrapper">
               <h2 class="product-title">Modifier votre Offre</h2>
               <ol class="breadcrumb">
-                <li><a href="#"><i class="ti-home"></i> Accueil</a></li>
+                <li><a href="{{ path('student_index') }}"><i ></i> Accueil</a></li>
+                <li><a href="#"><i class="ti-home"></i> Profile</a></li>
                 <li class="current">Modifier votre Offre</li>
               </ol>
             </div>
@@ -165,63 +172,13 @@
         <div class="row">
           <div class="col-sm-12 col-md-9 col-md-offset-2">
             <div class="page-ads box">
-              <form class="form-ad">
-                <div class="form-group">
-                  <label class="control-label">Titre</label>
-                  <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Location <span>(optional)</span></label>
-                  <input type="text" value="valeur actuelle" class="form-control" placeholder="e.g.London">
-                </div>
-                <!-- <div class="form-group">
-                  <label class="control-label">Categorie</label>
-                  <div class="search-category-container">
-                    <label class="styled-select">
-                      <select class="dropdown-product selectpicker">
-                        <option>All Categories</option>
-                        <option>Finance</option>
-                        <option>IT & Engineering</option>
-                        <option>Education/Training</option>
-                        <option>Art/Design</option>
-                        <option>Sale/Markting</option>
-                        <option>Healthcare</option>
-                        <option>Science</option>
-                        <option>Food Services</option>
-                      </select>
-                    </label>
-                  </div>
-                </div> -->
-                
+                  {{ include('offer/_form.html.twig', {'button_label': 'Update'}) }}<br>
 
-                <div class="form-group">
-                  <label class="control-label">Description</label>
-                  <input type="textarea" value="valeur acuelle" class="form-control" placeholder="Description...">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Lien </label>
-                      <input type="text" value="valeur acuelle" class="form-control" placeholder="www.domaine...">
-  
-                  </div>
+                  
 
-                <div class="form-group">
-                  <label class="control-label">Domaine</label>
-                  <div class="search-category-container">
-                    <label class="styled-select">
-                      <select class="dropdown-product selectpicker">
-                        <option>Developpement Web</option>
-                        <option>Developpement Mobile</option>
-                        <option>Data Science</option>
+                  {{ include('offer/_delete_form.html.twig') }} <br>
 
-                        <option>Machine Learning</option>
-                      </select>
-                    </label>
-                  </div>
-                </div>
-
-
-                <a href="#" class="btn btn-common">Ajouter Mission</a>
-              </form>
+                  <a href="{{ path('offer_index') }}"><button class="btn btn-common log-btn">Back To List</button></a>
             </div>
           </div>
         </div>
@@ -295,20 +252,7 @@
     <a href="#" class="back-to-top">
       <i class="ti-arrow-up"></i>
     </a>
-    <div id="loading">
-      <div id="loading-center">
-        <div id="loading-center-absolute">
-          <div class="object" id="object_one"></div>
-          <div class="object" id="object_two"></div>
-          <div class="object" id="object_three"></div>
-          <div class="object" id="object_four"></div>
-          <div class="object" id="object_five"></div>
-          <div class="object" id="object_six"></div>
-          <div class="object" id="object_seven"></div>
-          <div class="object" id="object_eight"></div>
-        </div>
-      </div>
-    </div>
+
 
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/jquery-min.js') }}"></script>
     <script type="784cf4f86456e486b65ed528-text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

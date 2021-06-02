@@ -70,8 +70,14 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right float-right">
-              <li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> S'enregistrer</a></li>
-              <li class="right"><a href="login.html"><i class="ti-lock"></i> Connexion</a></li>
+              {% if app.user %}
+                  <li class="right"><a href="{{path('app_logout')}}"><i class="ti-lock"></i> Logout</a></li>
+              {% else %}
+                  
+                    <li class="left"><a href="{{ path('registration') }}"><i class="ti-pencil-alt"></i> S'enregistrer </a>
+                  </li>
+                  <li class="right"><a href="{{ path('app_login') }}"><i class="ti-lock"></i> Connexion</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>

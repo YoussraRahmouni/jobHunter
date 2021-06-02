@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Company;
 use App\Entity\Offer;
+use App\Entity\User;
 use App\Form\OfferType;
 use App\Repository\OfferRepository;
+use App\Repository\CompanyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +23,7 @@ class OfferController extends AbstractController
      */
     public function index(OfferRepository $offerRepository): Response
     {
-        return $this->render('offer/index.html.twig', [
+        return $this->render('offer/offers.html.twig', [
             'offers' => $offerRepository->findAll(),
         ]);
     }
@@ -28,19 +31,24 @@ class OfferController extends AbstractController
     /**
      * @Route("/new", name="offer_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CompanyRepository $companyRepository): Response
     {
+
         $offer = new Offer();
-        $currentUser = $this->getCompany();
+        $user = new User();
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
+
+        
+        $company=$this->getUser()->getCompany();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             if(!is_null($offer)){
 
-                $currentUser = $this->getCompany();
-                $offer->setCompany($currentUser);
+                $company=$this->getUser()->getCompany();
+                $offer->setCompany($company);
 
                 //save
                 $em = $this->getDoctrine()->getManager();
@@ -52,7 +60,7 @@ class OfferController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($offer);
                 $em->flush();
-                $offer->setCompany($currentUser);
+
             }
 
 
@@ -92,7 +100,7 @@ class OfferController extends AbstractController
             return $this->redirectToRoute('offer_index');
         }
 
-        return $this->render('offer/edit.html.twig', [
+        return $this->render('offer/modify_offre.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),
         ]);

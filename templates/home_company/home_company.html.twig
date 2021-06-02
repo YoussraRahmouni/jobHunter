@@ -65,20 +65,28 @@
               <!-- Start Navigation List -->
               <ul class="nav navbar-nav">
                 <li>
-                  <a class="active" href="index.html">
-                    Accueil
-                  </a>
-                </li>
-                <li>
-                  
-                </li>
+                                <a class="active" href="{{ path('student_index') }}">
+                                    Accueil
+                                </a>
+                            </li>
+                            <li>
+                                <a  href="{{ path('offer_index') }}">
+                                    Profile
+                                </a>
+                            </li>
 
               </ul>
               <ul class="nav navbar-nav navbar-right float-right">
-                <li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> S'enregistrer</a>
-                </li>
-                <li class="right"><a href="login.html"><i class="ti-lock"></i> Connexion</a></li>
-                <li class="right"><a href="add_offre.html"><i class="ti-lock"></i> ajouter offre</a></li>
+                {% if app.user %}
+                            <li class="right"><a href="{{ path('offer_new') }}"><i class="ti-lock"></i> ajouter offre</a></li>
+                            <li class="right"><a href="{{ path('app_logout') }}"><i class="ti-lock"></i> Logout</a></li>
+                        {% else %}
+                            
+                            <li class="left"><a href="{{ path('registration') }}"><i class="ti-pencil-alt"></i> S'enregistrer </a>
+                            </li>
+                            <li class="right"><a href="my-account.html"><i class="ti-lock"></i> Connexion</a></li>
+                        {% endif %}
+
               </ul>
             </div>
           </div>
@@ -101,8 +109,8 @@
           <div class="row">
            
            <div style="padding: 100px; text-align:center;">
-              <h2>Tous les etudiants</h2><br>
-                <h2>Liste De Tous les Etudiants</h2>
+
+                <h1>Liste De Tous les Etudiants</h1>
            </div>
 
           </div>
@@ -118,16 +126,19 @@
     <div class="container">
       <h2 class="section-title">Tous les etudiants</h2>
       <div class="row">
+      {% for student in students %}
         <div class="col-md-12">
-          <div class="job-list">
+        
+          <div class="job-list"  style="width: 100%;">
+          
             <div class="thumb">
 
             </div>
-            {% for student in students %}
+            
             <div class="job-list-content">
               <h4><a href="job-details.html">{{ student.studentName }}</a><span class="full-time">{{ student.studentDomain }}</span></h4>
-              <p>{{ student.id }}
-                lkjehfgmqshdfmlkqsdmlfhqsopfmkqjshdmkqhsmgkhqsdmkjhfmqkshjfmkqshdkgmhqsmkdjhfmkqshmkqshjdfgklsjhfgpoiuhzmsiuqhfd
+              <p>
+
               </p>
               <div class="job-tag">
                 <div class="pull-left">
@@ -143,12 +154,10 @@
                 </div>
               </div>
             </div>
-            {% endfor %}
+            
           </div>
-
-
-
         </div>
+        {% endfor %}
       </div>
   </section>
   <!-- Find Job Section End -->

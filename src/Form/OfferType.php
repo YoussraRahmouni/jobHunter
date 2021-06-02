@@ -15,7 +15,7 @@ class OfferType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('link')
-          //  ->add('company')
+            //->add('company')
         ;
     }
 

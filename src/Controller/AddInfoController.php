@@ -21,6 +21,9 @@ class AddInfoController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
+        if($this->getUser()->getStudent()){
+            return $this->redirectToRoute('student_index');
+        }
 
 
 

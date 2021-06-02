@@ -72,9 +72,14 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right float-right">
-                            <li class="left"><a href="{{ path('registration') }}"><i class="ti-pencil-alt"></i> S'enregistrer </a>
+                        {% if app.user %}
+                           <li class="right"><a href="my-account.html"><i class="ti-lock"></i> Logout</a></li>
+                        {% else %}
+                            
+                             <li class="left"><a href="{{ path('registration') }}"><i class="ti-pencil-alt"></i> S'enregistrer </a>
                             </li>
                             <li class="right"><a href="my-account.html"><i class="ti-lock"></i> Connexion</a></li>
+                        {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -201,6 +206,7 @@
 
                                     <div class="form-group">
                                         <div class="input-icon">
+                                        
                                             <i class="ti-user"></i>
                                             <input type="email" id="sender-email" class="form-control" name="email"
                                                 placeholder="email">
