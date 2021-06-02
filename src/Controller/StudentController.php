@@ -20,6 +20,9 @@ class StudentController extends AbstractController
      */
     public function index(StudentRepository $studentRepository): Response
     {
+        if($this->getUser()->getStudent()){
+            return $this->redirectToRoute('home_student');
+        }
         return $this->render('home_company/home_company.html.twig', [
             'students' => $studentRepository->findAll(),
         ]);
