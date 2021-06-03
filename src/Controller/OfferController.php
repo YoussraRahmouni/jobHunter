@@ -23,6 +23,7 @@ class OfferController extends AbstractController
      */
     public function index(OfferRepository $offerRepository): Response
     {
+        // returns list of offers of the company
         return $this->render('offer/offers.html.twig', [
             'offers' => $offerRepository->findAll(),
         ]);

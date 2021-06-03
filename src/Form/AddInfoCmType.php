@@ -15,7 +15,7 @@ class AddInfoCmType extends AbstractType
         $builder
             ->add('company_name',TextType::class)
             ->add('company_website',TextType::class)
-            //->add('user')
+
         ;
     }
 

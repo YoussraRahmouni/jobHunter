@@ -20,6 +20,7 @@ class StudentController extends AbstractController
      */
     public function index(StudentRepository $studentRepository): Response
     {
+        // list of students to company
         if($this->getUser()->getStudent()){
             return $this->redirectToRoute('home_student');
         }

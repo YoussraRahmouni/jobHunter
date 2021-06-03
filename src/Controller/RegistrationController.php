@@ -25,6 +25,7 @@ class RegistrationController extends AbstractController
      */
     public function index(Request $request)
     {
+        // registration of user
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
